@@ -122,7 +122,7 @@ pub async fn update_task(
     Path(id): Path<Uuid>,
     Json(req): Json<UpdateTask>,
 ) -> Result<Json<Task>> {
-    if claims.role != "assigner" {
+    if claims.role != "admin" {
         let is_assigned = sqlx::query_scalar::<_, bool>(
             "SELECT EXISTS(SELECT 1 FROM task_assignees WHERE task_id = $1 AND user_id = $2)",
         )

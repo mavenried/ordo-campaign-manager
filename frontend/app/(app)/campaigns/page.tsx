@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { Plus, Megaphone, Loader2, Trash2 } from "lucide-react";
 import { useCampaigns, useCreateCampaign, useDeleteCampaign } from "@/hooks/useCampaigns";
-import { useIsAssigner } from "@/hooks/useRole";
+import { useIsAdmin } from "@/hooks/useRole";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Markdown } from "@/components/ui/Markdown";
@@ -28,7 +28,7 @@ export default function CampaignsPage() {
   const { data: campaigns, isLoading, refetch } = useCampaigns();
   const createCampaign = useCreateCampaign();
   const deleteCampaign = useDeleteCampaign();
-  const isAssigner = useIsAssigner();
+  const isAssigner = useIsAdmin();
 
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("name");

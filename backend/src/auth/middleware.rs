@@ -45,12 +45,12 @@ pub async fn require_auth(
     Ok(next.run(req).await)
 }
 
-pub async fn require_assigner(
+pub async fn require_admin(
     Extension(claims): Extension<AuthClaims>,
     req: Request<Body>,
     next: Next,
 ) -> std::result::Result<Response, AppError> {
-    if claims.role != "assigner" {
+    if claims.role != "admin" {
         return Err(AppError::Unauthorized);
     }
     Ok(next.run(req).await)

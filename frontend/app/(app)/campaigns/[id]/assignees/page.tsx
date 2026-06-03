@@ -8,12 +8,11 @@ import type { AssignedTask } from "@/types";
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    todo: "bg-gray-100 text-gray-600 dark:text-gray-400",
+    todo: "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200",
     in_progress: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-    blocked: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
     done: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
   };
-  const labels: Record<string, string> = { todo: "To Do", in_progress: "In Progress", blocked: "Blocked", done: "Done" };
+  const labels: Record<string, string> = { todo: "To Do", in_progress: "In Progress", done: "Done" };
   return (
     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${styles[status] ?? styles.todo}`}>
       {labels[status] ?? status}
@@ -21,7 +20,7 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-function AssigneeCard({ userId, userName, userRole }: { userId: string; userName: string; userRole: string }) {
+function MemberCard({ userId, userName, userRole }: { userId: string; userName: string; userRole: string }) {
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["user-tasks", userId],
     queryFn: () => api.get<AssignedTask[]>(`/users/${userId}/tasks`),
@@ -63,15 +62,15 @@ function AssigneeCard({ userId, userName, userRole }: { userId: string; userName
   );
 }
 
-export default function AssigneesPage() {
+export default function MembersPage() {
   const { data: users = [] } = useUsers();
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-semibold mb-6">Assignees</h1>
+      <h1 className="text-2xl font-semibold mb-6">Members</h1>
       <div className="space-y-4">
         {users.map((u) => (
-          <AssigneeCard key={u.id} userId={u.id} userName={u.name} userRole={u.role} />
+          <MemberCard key={u.id} userId={u.id} userName={u.name} userRole={u.role} />
         ))}
       </div>
     </div>

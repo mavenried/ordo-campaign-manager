@@ -15,7 +15,6 @@ import type { AssignedTask, TaskStatus } from "@/types";
 const STATUS_COLS: { key: TaskStatus; label: string; bg: string; cardBg: string }[] = [
   { key: "todo",        label: "To Do",       bg: "bg-zinc-100 dark:bg-zinc-800/60",   cardBg: "bg-card dark:bg-zinc-700/50" },
   { key: "in_progress", label: "In Progress",  bg: "bg-blue-50 dark:bg-blue-950/40",   cardBg: "bg-card dark:bg-blue-900/25" },
-  { key: "blocked",     label: "Blocked",      bg: "bg-red-50 dark:bg-red-950/40",     cardBg: "bg-card dark:bg-red-900/25" },
   { key: "done",        label: "Done",         bg: "bg-green-50 dark:bg-green-950/40", cardBg: "bg-card dark:bg-green-900/25" },
 ];
 
@@ -117,7 +116,7 @@ export default function MyTasksPage() {
         </div>
       ) : (
         <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {STATUS_COLS.map((col) => (
               <Column
                 key={col.key}

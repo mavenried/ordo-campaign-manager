@@ -4,21 +4,23 @@ import Link from "next/link";
 import { usePathname, useParams, useRouter } from "next/navigation";
 import {
   LayoutDashboard, FolderKanban, Users, Calendar,
-  MessageSquare, LogOut, Sun, Moon, CheckSquare,
+  MessageSquare, LogOut, Sun, Moon, CheckSquare, Settings,
 } from "lucide-react";
 import { useAuthStore } from "@/lib/store";
 import { useThemeStore, THEMES } from "@/lib/theme";
+import { useIsAdmin } from "@/hooks/useRole";
 import { cn } from "@/lib/utils";
 
-const navItems = (campaignId: string | null) => [
+const navItems = (campaignId: string | null, isAdmin: boolean) => [
   { href: "/campaigns",  label: "Campaigns",  icon: LayoutDashboard },
   { href: "/my-tasks",   label: "My Tasks",   icon: CheckSquare },
   { href: "/calendar",   label: "Calendar",   icon: Calendar },
   ...(campaignId ? [
-    { href: `/campaigns/${campaignId}`,            label: "Tasks",     icon: FolderKanban },
-    { href: `/campaigns/${campaignId}/assignees`,  label: "Assignees", icon: Users },
-    { href: `/campaigns/${campaignId}/chat`,       label: "AI Chat",   icon: MessageSquare },
+    { href: `/campaigns/${campaignId}`,            label: "Tasks",   icon: FolderKanban },
+    { href: `/campaigns/${campaignId}/assignees`,  label: "Members", icon: Users },
+    { href: `/campaigns/${campaignId}/chat`,       label: "AI Chat", icon: MessageSquare },
   ] : []),
+  ...(isAdmin ? [{ href: "/settings", label: "Settings", icon: Settings }] : []),
 ];
 
 export function Sidebar() {
@@ -29,6 +31,7 @@ export function Sidebar() {
   const user = useAuthStore((s) => s.user);
   const router = useRouter();
   const { mode, name, toggleMode, setTheme } = useThemeStore();
+  const isAdmin = useIsAdmin();
 
   const handleLogout = () => {
     logout();
@@ -47,7 +50,7 @@ export function Sidebar() {
 
       {/* Nav */}
       <nav className="flex-1 px-2 py-4 space-y-0.5 overflow-y-auto">
-        {navItems(campaignId).map(({ href, label, icon: Icon }) => {
+        {navItems(campaignId, isAdmin).map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
           return (
             <Link key={href} href={href}

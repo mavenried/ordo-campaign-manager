@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer, Views, View } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { enUS } from "date-fns/locale/en-US";
 import { api } from "@/lib/api";
@@ -17,6 +18,8 @@ const localizer = dateFnsLocalizer({
 });
 
 export default function CalendarPage() {
+  const [view, setView] = useState<View>(Views.MONTH);
+  const [date, setDate] = useState(new Date());
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["calendar"],
     queryFn: () => api.get<CalendarTask[]>("/calendar"),
@@ -46,15 +49,18 @@ export default function CalendarPage() {
       {isLoading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : (
-        <div className="flex-1 rounded-xl overflow-hidden border dark:border-gray-700 calendar-wrapper">
+        <div className="flex-1 rounded-xl overflow-auto border dark:border-gray-700 calendar-wrapper">
           <Calendar
             localizer={localizer}
             events={events}
             startAccessor="start"
             endAccessor="end"
-            defaultView={Views.MONTH}
+            date={date}
+            onNavigate={setDate}
+            view={view}
+            onView={setView}
             views={[Views.MONTH, Views.WEEK, Views.AGENDA]}
-            style={{ height: "100%" }}
+            style={{ height: view === Views.AGENDA ? "auto" : "100%", minHeight: 600 }}
             eventPropGetter={(event) => ({
               style: {
                 backgroundColor: (event.resource as { color: string })?.color ?? "#6366f1",

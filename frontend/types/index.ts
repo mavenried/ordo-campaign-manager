@@ -37,7 +37,7 @@ export interface TaskFamily {
   updated_at: string;
 }
 
-export type TaskStatus = "todo" | "in_progress" | "blocked" | "done";
+export type TaskStatus = "todo" | "in_progress" | "done";
 
 export interface Task {
   id: string;

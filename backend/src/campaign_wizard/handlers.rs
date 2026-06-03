@@ -44,11 +44,18 @@ pub struct GenerateResult {
 
 fn campaign_system_prompt(campaign_name: &str) -> String {
     format!(
-        "You are a project management expert helping plan the campaign '{campaign_name}'. \
-         Your goal is to understand the campaign's objectives, scope, timeline, and requirements \
-         through focused questions — one at a time. Ask about: goals, target audience, timeline, \
-         budget constraints, team size, key deliverables, and any dependencies or blockers.\n\n\
-         After 4-6 exchanges when you have a clear picture, tell the user: \
+        "You are a project management expert helping plan the campaign '{campaign_name}'.\n\
+         Your goal is to understand the campaign through focused questions — one at a time.\n\n\
+         Cover these areas:\n\
+         1. Campaign goals and KPIs\n\
+         2. Target audience and key markets\n\
+         3. Timeline and launch date\n\
+         4. Online activities: website updates, app, paid ads, SEO/SEM, social media\n\
+         5. Offline activities: on-ground events, media kit, print, PR\n\
+         6. Key milestones and approval gates\n\
+         7. Email marketing needs\n\
+         8. Budget constraints and team size\n\n\
+         After 4-6 exchanges when you have a clear picture, say:\n\
          'I have enough information to generate your task breakdown. Click **Generate Tasks** when ready.'\n\n\
          Be concise and conversational."
     )
@@ -56,19 +63,36 @@ fn campaign_system_prompt(campaign_name: &str) -> String {
 
 fn generate_prompt(campaign_name: &str) -> String {
     format!(
-        "Based on our conversation about the campaign '{campaign_name}', \
-         generate a comprehensive, realistic task breakdown.\n\n\
+        "Based on our conversation, generate a comprehensive task breakdown for '{campaign_name}'.\n\n\
+         MANDATORY: Every campaign MUST include all 5 categories below, each structured as a \
+         parent task with nested sub-tasks (2-3 levels deep). Use depends_on_titles to create \
+         the parent-child hierarchy.\n\n\
+         REQUIRED CATEGORIES:\n\
+         1. ONLINE — parent: \"Online Campaign\"\n\
+            Sub-tasks: Website/landing page, App content, Paid ads (Google/Meta/etc), \
+            SEO/SEM, Social media content calendar, Digital creatives\n\
+         2. OFFLINE — parent: \"Offline Campaign\"\n\
+            Sub-tasks: On-ground activations, Media kit, Print/OOH materials, \
+            PR & press outreach, Events/roadshows, Vendor coordination\n\
+         3. MILESTONES — parent: \"Campaign Milestones\"\n\
+            Sub-tasks: Kickoff meeting, Brief sign-off, Creative review, \
+            Stakeholder approval, Soft launch, Full launch, Mid-campaign check\n\
+         4. EMAILERS — parent: \"Email Marketing\"\n\
+            Sub-tasks: Audience segmentation, Pre-launch teaser email, \
+            Launch announcement, Follow-up sequence, Re-engagement email\n\
+         5. POST CAMPAIGN ANALYSIS — parent: \"Post Campaign Analysis\"\n\
+            Sub-tasks: Online metrics collection, Offline results compilation, \
+            ROI & budget reconciliation, Learnings report, Final presentation\n\n\
          Return ONLY valid JSON — no explanation, no markdown, no code fences:\n\
-         {{\n  \"tasks\": [\n    {{\n      \"title\": \"Task title\",\n      \
-         \"description\": \"What needs to be done and why\",\n      \
-         \"due_days_from_now\": 14,\n      \
-         \"depends_on_titles\": [\"Exact title of prerequisite task\"]\n    }}\n  ]\n}}\n\n\
+         {{\"tasks\":[{{\"title\":\"...\",\"description\":\"...\",\"due_days_from_now\":14,\"depends_on_titles\":[\"...\"]}},{{\"title\":\"...\",\"description\":\"...\",\"due_days_from_now\":7,\"depends_on_titles\":[]}}]}}\n\n\
          Rules:\n\
-         - Include ALL tasks needed to execute this campaign end-to-end\n\
+         - Each category parent has depends_on_titles: []\n\
+         - Each direct sub-task depends on its category parent title\n\
+         - Deeper sub-tasks depend on their immediate parent task title\n\
          - depends_on_titles must be exact titles of other tasks in the list\n\
-         - due_days_from_now: realistic estimates (7=one week, 14=two weeks, 30=one month)\n\
-         - Order tasks chronologically\n\
-         - Leave depends_on_titles empty [] if no prerequisites"
+         - due_days_from_now: realistic based on discussed timeline (0=now, 7=1wk, 30=1mo, 60=2mo)\n\
+         - Milestones and Post Campaign Analysis bookend the timeline\n\
+         - Include all campaign-specific tasks gleaned from our conversation"
     )
 }
 

@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/lib/store";
 
-export function useIsAssigner() {
+export function useIsAdmin() {
   const user = useAuthStore((s) => s.user);
-  return user?.role === "assigner";
+  return user?.role === "admin";
 }

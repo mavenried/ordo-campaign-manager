@@ -61,11 +61,12 @@ async fn main() {
         .route("/tasks/{id}/assignees/{user_id}", delete(tasks::handlers::remove_assignee))
         .route("/tasks/{id}/dependencies", post(tasks::handlers::add_dependency))
         .route("/tasks/{id}/dependencies/{dep_id}", delete(tasks::handlers::remove_dependency))
+        .route("/users/{id}/role", patch(users::handlers::update_user_role))
         // Campaign creation wizard
         .route("/campaign-wizard/start", post(campaign_wizard::handlers::start_wizard))
         .route("/campaign-wizard/{session_id}/message", post(campaign_wizard::handlers::wizard_message))
         .route("/campaign-wizard/{session_id}/generate", post(campaign_wizard::handlers::generate_tasks))
-        .layer(middleware::from_fn(auth::middleware::require_assigner));
+        .layer(middleware::from_fn(auth::middleware::require_admin));
 
     // All authenticated users
     let protected = Router::new()
