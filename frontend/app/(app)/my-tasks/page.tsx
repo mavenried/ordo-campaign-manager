@@ -8,6 +8,7 @@ import {
 } from "@dnd-kit/core";
 import { useDroppable, useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import { GripVertical } from "lucide-react";
 import { api } from "@/lib/api";
 import { taskColor } from "@/lib/taskColor";
 import type { AssignedTask, TaskStatus } from "@/types";
@@ -26,17 +27,23 @@ function TaskCard({ task, cardBg }: { task: AssignedTask; cardBg: string }) {
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Translate.toString(transform), opacity: isDragging ? 0.3 : 1 }}
-      className={`${cardBg} rounded-xl border p-3 space-y-1.5 cursor-grab active:cursor-grabbing select-none`}
-      {...attributes}
-      {...listeners}
+      className={`${cardBg} rounded-xl border p-3 space-y-1.5 select-none`}
     >
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-1.5">
+        <button
+          {...attributes}
+          {...listeners}
+          className="flex-shrink-0 mt-0.5 touch-none cursor-grab active:cursor-grabbing text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+          aria-label="Drag to move"
+        >
+          <GripVertical size={14} />
+        </button>
         <span className="w-2.5 h-2.5 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: color }} />
         <p className={`text-sm font-semibold leading-snug ${task.status === "done" ? "line-through text-muted-foreground" : ""}`}>
           {task.title}
         </p>
       </div>
-      <div className="pl-4 flex items-center justify-between gap-2">
+      <div className="pl-9 flex items-center justify-between gap-2">
         <span className="text-xs text-muted-foreground truncate">{task.campaign_name}</span>
         {task.due_date && (
           <span className="text-xs text-muted-foreground shrink-0">
@@ -102,7 +109,7 @@ export default function MyTasksPage() {
   const done = tasks.filter((t) => t.status === "done").length;
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-semibold">My Tasks</h1>
         <p className="text-sm text-muted-foreground mt-1">{pending} pending · {done} done</p>

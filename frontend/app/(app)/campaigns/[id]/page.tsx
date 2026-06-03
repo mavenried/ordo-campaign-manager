@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useParams } from "next/navigation";
-import { Plus, Link2, UserPlus, Trash2, Pencil, ChevronRight, ChevronDown } from "lucide-react";
+import { Plus, Link2, UserPlus, Trash2, Pencil, ChevronRight, ChevronDown, GripVertical } from "lucide-react";
 import {
   DndContext, DragEndEvent, DragOverlay, DragStartEvent,
   PointerSensor, useSensor, useSensors,
@@ -76,11 +76,19 @@ function TaskCard({
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Translate.toString(transform), opacity: isDragging ? 0.3 : 1 }}
-      className={`group ${cardBg} rounded-xl border p-3 space-y-2 cursor-grab active:cursor-grabbing select-none`}
-      {...attributes}
-      {...listeners}
+      className={`group ${cardBg} rounded-xl border p-3 space-y-2 select-none`}
     >
       <div className="flex items-start gap-1.5">
+        {/* Drag handle — only this area initiates drag */}
+        <button
+          {...attributes}
+          {...listeners}
+          className="flex-shrink-0 mt-0.5 touch-none cursor-grab active:cursor-grabbing text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+          aria-label="Drag to move"
+        >
+          <GripVertical size={14} />
+        </button>
+
         {/* Expand / collapse toggle */}
         <button
           onPointerDown={(e) => e.stopPropagation()}
@@ -511,8 +519,8 @@ export default function CampaignPage() {
   const draggingTask = draggingId ? tasks.find((t) => t.id === draggingId) : null;
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 sm:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-2xl font-semibold">{campaign?.name ?? "Campaign"}</h1>
           {campaign?.description && <p className="text-sm text-muted-foreground mt-1">{campaign.description}</p>}
