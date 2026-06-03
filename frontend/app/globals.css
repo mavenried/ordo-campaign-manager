@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ORDO THEME SYSTEM
+   Each theme defines light vars at [data-theme="x"]
+   and dark vars at [data-theme="x"].dark
+   ============================================================ */
+
+/* ── SLATE (default) ─────────────────────────────────────── */
+:root, [data-theme="slate"] {
+  --background: 220 16% 90%;
+  --foreground: 220 25% 12%;
+  --card: 220 14% 96%;
+  --card-foreground: 220 25% 12%;
+  --popover: 220 14% 96%;
+  --popover-foreground: 220 25% 12%;
+  --primary: 239 84% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 86%;
+  --secondary-foreground: 220 25% 20%;
+  --muted: 220 14% 87%;
+  --muted-foreground: 220 10% 46%;
+  --accent: 239 84% 92%;
+  --accent-foreground: 239 84% 35%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 14% 82%;
+  --input: 220 14% 82%;
+  --ring: 239 84% 62%;
+  --radius: 0.5rem;
+  --sidebar-bg: 222 47% 10%;
+  --sidebar-fg: 220 20% 80%;
+  --sidebar-fg-active: 0 0% 100%;
+  --sidebar-border: 222 30% 16%;
+  --sidebar-accent: 222 30% 18%;
+}
+
+[data-theme="slate"].dark {
+  --background: 222 47% 8%;
+  --foreground: 210 30% 92%;
+  --card: 222 40% 11%;
+  --card-foreground: 210 30% 92%;
+  --popover: 222 40% 11%;
+  --popover-foreground: 210 30% 92%;
+  --primary: 239 84% 70%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 222 30% 16%;
+  --secondary-foreground: 210 30% 90%;
+  --muted: 222 30% 14%;
+  --muted-foreground: 220 15% 55%;
+  --accent: 239 50% 22%;
+  --accent-foreground: 239 84% 80%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 222 25% 18%;
+  --input: 222 25% 18%;
+  --ring: 239 84% 70%;
+  --sidebar-bg: 222 50% 6%;
+  --sidebar-fg: 220 15% 65%;
+  --sidebar-fg-active: 0 0% 100%;
+  --sidebar-border: 222 30% 12%;
+  --sidebar-accent: 222 30% 14%;
+}
+
+/* ── NOIR ────────────────────────────────────────────────── */
+[data-theme="noir"] {
+  --background: 0 0% 90%;
+  --foreground: 0 0% 6%;
+  --card: 0 0% 96%;
+  --card-foreground: 0 0% 6%;
+  --popover: 0 0% 96%;
+  --popover-foreground: 0 0% 6%;
+  --primary: 0 0% 8%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 86%;
+  --secondary-foreground: 0 0% 12%;
+  --muted: 0 0% 87%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 84%;
+  --accent-foreground: 0 0% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 80%;
+  --input: 0 0% 80%;
+  --ring: 0 0% 8%;
+  --radius: 0.25rem;
+  --sidebar-bg: 0 0% 4%;
+  --sidebar-fg: 0 0% 65%;
+  --sidebar-fg-active: 0 0% 100%;
+  --sidebar-border: 0 0% 10%;
+  --sidebar-accent: 0 0% 12%;
+}
+
+[data-theme="noir"].dark {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 96%;
+  --primary: 0 0% 94%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 50%;
+  --accent: 0 0% 14%;
+  --accent-foreground: 0 0% 94%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 0 0% 70%;
+  --sidebar-bg: 0 0% 2%;
+  --sidebar-fg: 0 0% 55%;
+  --sidebar-fg-active: 0 0% 96%;
+  --sidebar-border: 0 0% 8%;
+  --sidebar-accent: 0 0% 10%;
+}
+
+/* ── FOREST ──────────────────────────────────────────────── */
+[data-theme="forest"] {
+  --background: 138 28% 90%;
+  --foreground: 140 50% 8%;
+  --card: 138 18% 96%;
+  --card-foreground: 140 50% 8%;
+  --popover: 138 18% 96%;
+  --popover-foreground: 140 50% 8%;
+  --primary: 142 72% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 138 18% 85%;
+  --secondary-foreground: 140 40% 14%;
+  --muted: 138 18% 86%;
+  --muted-foreground: 138 15% 44%;
+  --accent: 142 60% 86%;
+  --accent-foreground: 142 72% 22%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 138 18% 80%;
+  --input: 138 18% 80%;
+  --ring: 142 72% 38%;
+  --radius: 0.625rem;
+  --sidebar-bg: 140 55% 8%;
+  --sidebar-fg: 138 20% 65%;
+  --sidebar-fg-active: 138 30% 96%;
+  --sidebar-border: 140 40% 13%;
+  --sidebar-accent: 140 40% 15%;
+}
+
+[data-theme="forest"].dark {
+  --background: 140 40% 6%;
+  --foreground: 138 25% 90%;
+  --card: 140 35% 9%;
+  --card-foreground: 138 25% 90%;
+  --popover: 140 35% 9%;
+  --popover-foreground: 138 25% 90%;
+  --primary: 142 60% 52%;
+  --primary-foreground: 140 55% 6%;
+  --secondary: 140 25% 14%;
+  --secondary-foreground: 138 25% 88%;
+  --muted: 140 25% 12%;
+  --muted-foreground: 138 15% 50%;
+  --accent: 142 40% 18%;
+  --accent-foreground: 142 60% 70%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 140 20% 16%;
+  --input: 140 20% 16%;
+  --ring: 142 60% 52%;
+  --sidebar-bg: 140 50% 4%;
+  --sidebar-fg: 138 15% 55%;
+  --sidebar-fg-active: 138 25% 90%;
+  --sidebar-border: 140 35% 9%;
+  --sidebar-accent: 140 35% 11%;
+}
+
+/* ── EMBER ───────────────────────────────────────────────── */
+[data-theme="ember"] {
+  --background: 40 45% 90%;
+  --foreground: 25 60% 10%;
+  --card: 40 30% 96%;
+  --card-foreground: 25 60% 10%;
+  --popover: 40 30% 96%;
+  --popover-foreground: 25 60% 10%;
+  --primary: 32 95% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 40 28% 85%;
+  --secondary-foreground: 25 50% 16%;
+  --muted: 40 25% 86%;
+  --muted-foreground: 30 15% 45%;
+  --accent: 32 80% 88%;
+  --accent-foreground: 32 95% 28%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 38 25% 80%;
+  --input: 38 25% 80%;
+  --ring: 32 95% 48%;
+  --radius: 0.625rem;
+  --sidebar-bg: 25 55% 10%;
+  --sidebar-fg: 35 25% 62%;
+  --sidebar-fg-active: 40 60% 96%;
+  --sidebar-border: 25 40% 15%;
+  --sidebar-accent: 25 40% 17%;
+}
+
+[data-theme="ember"].dark {
+  --background: 24 50% 8%;
+  --foreground: 40 35% 92%;
+  --card: 24 42% 11%;
+  --card-foreground: 40 35% 92%;
+  --popover: 24 42% 11%;
+  --popover-foreground: 40 35% 92%;
+  --primary: 38 96% 56%;
+  --primary-foreground: 24 50% 8%;
+  --secondary: 25 30% 16%;
+  --secondary-foreground: 40 30% 88%;
+  --muted: 25 30% 13%;
+  --muted-foreground: 35 15% 52%;
+  --accent: 32 60% 20%;
+  --accent-foreground: 38 96% 72%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 25 25% 18%;
+  --input: 25 25% 18%;
+  --ring: 38 96% 56%;
+  --sidebar-bg: 25 55% 6%;
+  --sidebar-fg: 35 18% 52%;
+  --sidebar-fg-active: 40 35% 92%;
+  --sidebar-border: 25 40% 10%;
+  --sidebar-accent: 25 40% 12%;
+}
+
+/* ── OCEAN ───────────────────────────────────────────────── */
+[data-theme="ocean"] {
+  --background: 204 45% 90%;
+  --foreground: 210 80% 10%;
+  --card: 200 25% 96%;
+  --card-foreground: 210 80% 10%;
+  --popover: 200 25% 96%;
+  --popover-foreground: 210 80% 10%;
+  --primary: 200 98% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 204 30% 85%;
+  --secondary-foreground: 210 70% 15%;
+  --muted: 204 28% 86%;
+  --muted-foreground: 210 20% 46%;
+  --accent: 200 80% 86%;
+  --accent-foreground: 200 98% 22%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 204 25% 80%;
+  --input: 204 25% 80%;
+  --ring: 200 98% 38%;
+  --radius: 0.5rem;
+  --sidebar-bg: 215 70% 10%;
+  --sidebar-fg: 210 20% 65%;
+  --sidebar-fg-active: 204 60% 96%;
+  --sidebar-border: 215 50% 15%;
+  --sidebar-accent: 215 50% 17%;
+}
+
+[data-theme="ocean"].dark {
+  --background: 218 65% 8%;
+  --foreground: 204 40% 92%;
+  --card: 218 55% 11%;
+  --card-foreground: 204 40% 92%;
+  --popover: 218 55% 11%;
+  --popover-foreground: 204 40% 92%;
+  --primary: 199 90% 58%;
+  --primary-foreground: 218 65% 8%;
+  --secondary: 218 40% 16%;
+  --secondary-foreground: 204 30% 88%;
+  --muted: 218 40% 13%;
+  --muted-foreground: 210 18% 52%;
+  --accent: 200 50% 20%;
+  --accent-foreground: 199 90% 74%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 218 30% 18%;
+  --input: 218 30% 18%;
+  --ring: 199 90% 58%;
+  --sidebar-bg: 218 70% 6%;
+  --sidebar-fg: 210 15% 55%;
+  --sidebar-fg-active: 204 40% 92%;
+  --sidebar-border: 218 50% 10%;
+  --sidebar-accent: 218 50% 12%;
+}
+
+/* ── PETAL ───────────────────────────────────────────────── */
+[data-theme="petal"] {
+  --background: 330 30% 91%;
+  --foreground: 330 30% 14%;
+  --card: 330 20% 96%;
+  --card-foreground: 330 30% 14%;
+  --popover: 330 20% 96%;
+  --popover-foreground: 330 30% 14%;
+  --primary: 330 55% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 330 20% 85%;
+  --secondary-foreground: 330 25% 18%;
+  --muted: 330 18% 86%;
+  --muted-foreground: 330 10% 48%;
+  --accent: 330 55% 88%;
+  --accent-foreground: 330 55% 30%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 330 18% 80%;
+  --input: 330 18% 80%;
+  --ring: 330 55% 52%;
+  --radius: 0.625rem;
+  --sidebar-bg: 330 40% 22%;
+  --sidebar-fg: 330 20% 72%;
+  --sidebar-fg-active: 0 0% 100%;
+  --sidebar-border: 330 30% 28%;
+  --sidebar-accent: 330 30% 30%;
+}
+
+[data-theme="petal"].dark {
+  --background: 330 25% 8%;
+  --foreground: 330 20% 90%;
+  --card: 330 22% 11%;
+  --card-foreground: 330 20% 90%;
+  --popover: 330 22% 11%;
+  --popover-foreground: 330 20% 90%;
+  --primary: 330 55% 62%;
+  --primary-foreground: 330 25% 8%;
+  --secondary: 330 20% 16%;
+  --secondary-foreground: 330 15% 86%;
+  --muted: 330 18% 13%;
+  --muted-foreground: 330 10% 52%;
+  --accent: 330 40% 20%;
+  --accent-foreground: 330 55% 74%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 330 18% 18%;
+  --input: 330 18% 18%;
+  --ring: 330 55% 62%;
+  --sidebar-bg: 330 35% 6%;
+  --sidebar-fg: 330 15% 55%;
+  --sidebar-fg-active: 330 20% 90%;
+  --sidebar-border: 330 25% 12%;
+  --sidebar-accent: 330 25% 14%;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================================
+   REACT-BIG-CALENDAR DARK MODE
+   ============================================================ */
+.dark .rbc-calendar {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+.dark .rbc-toolbar button {
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+.dark .rbc-toolbar button:hover,
+.dark .rbc-toolbar button.rbc-active {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+.dark .rbc-month-view,
+.dark .rbc-time-view,
+.dark .rbc-agenda-view table,
+.dark .rbc-header,
+.dark .rbc-month-row,
+.dark .rbc-day-bg,
+.dark .rbc-time-content,
+.dark .rbc-time-header,
+.dark .rbc-time-slot,
+.dark .rbc-timeslot-group,
+.dark .rbc-agenda-table td,
+.dark .rbc-agenda-table th {
+  border-color: hsl(var(--border));
+}
+.dark .rbc-header {
+  background-color: hsl(var(--card));
+  color: hsl(var(--muted-foreground));
+}
+.dark .rbc-today {
+  background-color: hsl(var(--accent));
+}
+.dark .rbc-off-range-bg {
+  background-color: hsl(var(--muted));
+}
+.dark .rbc-show-more {
+  color: hsl(var(--muted-foreground));
+}
